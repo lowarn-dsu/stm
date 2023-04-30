@@ -43,6 +43,7 @@ module Control.Concurrent.STM.TBQueue (
         lengthTBQueue,
         isEmptyTBQueue,
         isFullTBQueue,
+        sizeTBQueue,
   ) where
 
 import           Control.Monad   (unless)
@@ -240,3 +241,6 @@ isFullTBQueue (TBQueue rsize _read wsize _write _size) = do
          if (r > 0)
             then return False
             else return True
+
+sizeTBQueue :: TBQueue a -> Natural
+sizeTBQueue (TBQueue _ _ _ _ size) = size
